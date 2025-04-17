@@ -33,8 +33,8 @@ Este projeto foi desenvolvido para facilitar o acompanhamento semanal das ativid
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/seuusuario/gincana-kids-pibvp.git
-   cd gincana-kids-pibvp
+   git clone https://github.com/simoesjonatas/gincana.git
+   cd gincana
    ```
 
 2. Crie um ambiente virtual e ative:
@@ -64,7 +64,7 @@ Este projeto foi desenvolvido para facilitar o acompanhamento semanal das ativid
    ```
 
 Acesse em: [http://127.0.0.1:8000/admin/](http://127.0.0.1:8000/admin/)  
-Ranking público: [http://127.0.0.1:8000/ranking/](http://127.0.0.1:8000/ranking/)
+Ranking público: [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 ---
 
