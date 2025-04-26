@@ -1,3 +1,19 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Luckiest+Guy&display=swap'); */
+
+@font-face {
+    font-family: 'Kids Zone';
+    src: url('../fonts/KidsZone.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Gum Kids';
+    src: url('../fonts/GumKids.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 @font-face {
     font-family: 'SC Gum Kids';
     src: url("../fonts/SCGumKids.woff2") format('woff2'),
@@ -8,7 +24,10 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif; /* Agora padrão para o resto */
+    /* font-family: 'Luckiest Guy', cursive; */
+    /* font-family: 'Kids Zone', cursive; */
+    font-family: 'Gum Kids', cursive;
+
     background: linear-gradient(to bottom, #00b4ff, #0084d6);
     padding: 1rem;
     margin: 0;
@@ -36,8 +55,12 @@ body {
 }
 
 h1 {
-    font-family: 'SC Gum Kids', 'Comic Sans MS', cursive, sans-serif;
-    font-weight: bold;
+    /* font-family: 'SC Gum Kids', 'Comic Sans MS', cursive, sans-serif; */
+    /* font-family: 'Luckiest Guy', cursive; */
+    /* font-family: 'Kids Zone', cursive; */
+    font-family: 'Gum Kids', cursive;
+
+    /* font-weight: bold; */
     color: #0077c2;
     font-size: 2rem;
     margin-bottom: 0.5rem;
@@ -50,8 +73,12 @@ table {
 }
 
 th {
-    font-family: 'SC Gum Kids', 'Comic Sans MS', cursive, sans-serif;
-    font-weight: bold;
+    /* font-family: 'SC Gum Kids', 'Comic Sans MS', cursive, sans-serif; */
+    /* font-family: 'Luckiest Guy', cursive; */
+    /* font-family: 'Kids Zone', cursive; */
+    font-family: 'Gum Kids', cursive;
+
+    /* font-weight: bold; */
     text-shadow: 1px 1px 0px #33333333;
     background-color: #ffd54f;
     color: white;
@@ -62,8 +89,11 @@ th {
 }
 
 td {
-    font-family: 'Arial', sans-serif;
-    font-weight: bold;
+    /* font-family: 'Luckiest Guy', cursive; */
+    /* font-family: 'Kids Zone', cursive; */
+    font-family: 'Gum Kids', cursive;
+
+    /* font-weight: bold; */
     color: #0077c2;
     font-size: 1rem;
     padding: 12px 15px;
