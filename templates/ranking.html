@@ -1,99 +1,19 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
   <meta charset="UTF-8">
-  <title>Ranking da Gincana | Departamento Kids - PIBVP</title>
+  <title>PIBVP Kids - Ranking Game</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: 'Comic Sans MS', cursive, sans-serif;
-      background: linear-gradient(to bottom, #fceabb, #f8b500);
-      padding: 1rem;
-      margin: 0;
-      color: #333;
-    }
+  <link rel="stylesheet" href="{% static 'css/ranking.css' %}">
+  <link rel="icon" href="{% static 'images/favicon.png' %}" type="image/png">
 
-    .container {
-      background: white;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      padding: 2rem 1rem;
-      max-width: 900px;
-      margin: 2rem auto;
-    }
-
-    h1 {
-      text-align: center;
-      color: #ff6f00;
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .subtitulo {
-      text-align: center;
-      font-size: 1rem;
-      color: #555;
-      margin-bottom: 1.5rem;
-    }
-
-    .table-wrapper {
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 500px;
-    }
-
-    th, td {
-      padding: 12px 15px;
-      text-align: center;
-      border-bottom: 2px solid #f2f2f2;
-    }
-
-    th {
-      background-color: #ffe082;
-      color: #5d4037;
-      font-weight: bold;
-    }
-
-    tr:nth-child(even) {
-      background-color: #fff8e1;
-    }
-
-    tr:hover {
-      background-color: #ffe0b2;
-    }
-
-    .medalha {
-      font-size: 1.4rem;
-    }
-
-    .ouro { color: #ffd700; }
-    .prata { color: #c0c0c0; }
-    .bronze { color: #cd7f32; }
-
-    @media (max-width: 600px) {
-      th, td {
-        font-size: 0.9rem;
-        padding: 10px 8px;
-      }
-
-      h1 {
-        font-size: 1.6rem;
-      }
-
-      .subtitulo {
-        font-size: 0.95rem;
-      }
-    }
-  </style>
 </head>
 <body>
   <div class="container">
-    <h1>Ranking da Gincana</h1>
-    <div class="subtitulo">Departamento Kids - PIBVP</div>
+    <div class="logo">
+      <img src="{% static '/images/game2.png' %}" alt="PIBVP Kids - Ranking Game">
+    </div>
 
     <div class="table-wrapper">
       <table>
@@ -118,9 +38,8 @@
                     {{ item.posicao }}
                 {% endif %}
             </td>
-            <td>{{ item.nome }}</td>
+            <td>{{ item.nome|upper }}</td>
             <td>{{ item.total|floatformat:1 }}</td>
-
           </tr>
           {% endfor %}
         </tbody>

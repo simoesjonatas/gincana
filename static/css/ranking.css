@@ -1,0 +1,102 @@
+@font-face {
+    font-family: 'SC Gum Kids';
+    src: url("../fonts/SCGumKids.woff2") format('woff2'),
+         url("../fonts/SCGumKids.woff") format('woff'),
+         url("../fonts/SCGumKids.ttf") format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* Agora padrão para o resto */
+    background: linear-gradient(to bottom, #00b4ff, #0084d6);
+    padding: 1rem;
+    margin: 0;
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+    width: 90%;
+    max-width: 700px;
+    text-align: center;
+}
+
+.logo img {
+    max-width: 400px;
+    margin-bottom: 0.2rem;
+    margin-top: 0.5rem;
+}
+
+h1 {
+    font-family: 'SC Gum Kids', 'Comic Sans MS', cursive, sans-serif;
+    font-weight: bold;
+    color: #0077c2;
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+th {
+    font-family: 'SC Gum Kids', 'Comic Sans MS', cursive, sans-serif;
+    font-weight: bold;
+    text-shadow: 1px 1px 0px #33333333;
+    background-color: #ffd54f;
+    color: white;
+    font-size: 1.2rem;
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+td {
+    font-family: 'Arial', sans-serif;
+    font-weight: bold;
+    color: #0077c2;
+    font-size: 1rem;
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #f1f8ff;
+}
+
+tr:hover {
+    background-color: #e0f7fa;
+}
+
+.medalha {
+    font-size: 1.5rem;
+}
+
+.ouro { color: #ffd700; }
+.prata { color: #c0c0c0; }
+.bronze { color: #cd7f32; }
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.6rem;
+    }
+
+    th, td {
+        font-size: 0.9rem;
+    }
+
+    .logo img {
+        max-width: 80%;
+    }
+}
