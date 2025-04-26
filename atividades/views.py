@@ -26,7 +26,7 @@ def ranking_view(request):
             last_pontuacao = item.total
         ranking.append({
             'posicao': posicao,
-            'nome': item.nome,
+            'nome': item.nome.upper(),
             'total': item.total,
         })
 
