@@ -31,16 +31,17 @@
           {% for item in ranking %}
           <tr>
             <td>
-                {% if item.posicao == 1 %}
+                {% if item.medalha == 'ouro' %}
                     <span class="medalha ouro">🥇</span>
-                {% elif item.posicao == 2 %}
+                {% elif item.medalha == 'prata' %}
                     <span class="medalha prata">🥈</span>
-                {% elif item.posicao == 3 %}
+                {% elif item.medalha == 'bronze' %}
                     <span class="medalha bronze">🥉</span>
                 {% else %}
                     {{ item.posicao }}
                 {% endif %}
             </td>
+
             <td>{{ item.nome|upper }}</td>
             <td>{{ item.total|floatformat:1 }}</td>
           </tr>
