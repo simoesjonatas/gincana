@@ -4,6 +4,41 @@ from django.db.models import Sum, F, FloatField, ExpressionWrapper, Value
 from django.db.models.functions import Coalesce
 from django.db.models import FloatField
 
+
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.urls import reverse
+from django.views.decorators.http import require_http_methods
+from django.db import transaction
+from .forms import UploadPlanilhaForm
+from .import_planilha import importar_planilha
+
+@require_http_methods(["GET", "POST"])
+def upload_planilha_view(request):
+    if request.method == "POST":
+        form = UploadPlanilhaForm(request.POST, request.FILES)
+        if form.is_valid():
+            arq = form.cleaned_data["arquivo"]
+            try:
+                with transaction.atomic():
+                    resumo = importar_planilha(arq)
+                messages.success(
+                    request,
+                    f"Importação concluída: "
+                    f"{resumo['criancas_criadas_ou_encontradas']} crianças, "
+                    f"Semanas {', '.join(map(str, resumo['semanas_processadas']))}, "
+                    f"{resumo['resultados_criados']} resultados."
+                )
+                # Redireciona para o ranking (ajuste o nome da url)
+                return redirect(reverse("ranking"))
+            except Exception as e:
+                messages.error(request, f"Erro na importação: {e}")
+    else:
+        form = UploadPlanilhaForm()
+    return render(request, "upload_planilha.html", {"form": form})
+
+
+
 def ranking_view(request):
 
     ranking_qs = Crianca.objects.annotate(

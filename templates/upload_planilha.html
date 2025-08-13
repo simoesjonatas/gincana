@@ -1,0 +1,47 @@
+{% load static %}
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <title>Importar Planilha – Gincana</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu;max-width:720px;margin:40px auto;padding:0 16px}
+    .card{border:1px solid #e5e7eb;border-radius:12px;padding:20px}
+    .actions{margin-top:16px;display:flex;gap:8px;align-items:center}
+    .btn{background:#2563eb;color:#fff;border:none;padding:10px 16px;border-radius:10px;cursor:pointer}
+    .btn:disabled{opacity:.6;cursor:not-allowed}
+    .link{color:#2563eb;text-decoration:none}
+    .help{color:#555;font-size:.92rem;margin-top:8px}
+    .msgs{margin-bottom:16px}
+    .msg{padding:10px 12px;border-radius:10px;margin:6px 0}
+    .msg.success{background:#ecfdf5;color:#065f46}
+    .msg.error{background:#fef2f2;color:#991b1b}
+  </style>
+</head>
+<body>
+  <h1>Importar planilha</h1>
+
+  <div class="msgs">
+    {% for m in messages %}
+      <div class="msg {{ m.tags }}">{{ m }}</div>
+    {% endfor %}
+  </div>
+
+  <div class="card">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label>Arquivo (.xls/.xlsx):</label><br>
+      {{ form.arquivo }}
+      <div class="help">
+        Estrutura esperada: primeira coluna = <strong>Nome</strong> da criança; <br>
+        colunas seguintes: <em>1ªSemana, 2ªSemana, ...</em>; a coluna <strong>TOTAL</strong> (se houver) é ignorada.
+      </div>
+      <div class="actions">
+        <button class="btn" type="submit">Importar</button>
+        <a class="link" href="{% url 'ranking' %}">Ver ranking</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
