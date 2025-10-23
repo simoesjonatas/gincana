@@ -16,12 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from atividades.views import ranking_view
+from atividades.views import ranking_view, ranking_escolha
 
+admin.site.site_header = "Kids PIBVP"                       # substitui “Administração do Django”
+admin.site.index_title = "Administração da Pontuacao"       # subtítulo da home do admin
+admin.site.site_title = "Kids PIBVP • Admin"                # título da aba/navegador
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', ranking_view, name='home'),
+    path('', ranking_escolha, name='home'),
     path('', include('atividades.urls')),  # inclui as rotas do app
 
 ]

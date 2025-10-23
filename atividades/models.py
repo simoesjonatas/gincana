@@ -1,8 +1,14 @@
 from django.db import models
+from django.core.validators import MinValueValidator, MaxValueValidator
+
 
 class Crianca(models.Model):
     nome = models.CharField(max_length=100)
     turma = models.CharField(max_length=50, blank=True)
+    idade = models.PositiveSmallIntegerField(
+        validators=[MinValueValidator(0), MaxValueValidator(12)],
+        help_text="Idade da criança em anos (0–12)."
+    )
 
     def __str__(self):
         return self.nome

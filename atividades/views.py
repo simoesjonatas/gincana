@@ -82,3 +82,75 @@ def ranking_view(request):
         })
 
     return render(request, 'ranking.html', {'ranking': ranking})
+
+
+
+def ranking_escolha(request):
+    """
+    Renderiza a tela com os dois botões:
+    - Até 4 anos
+    - 5 anos ou mais
+    """
+    return render(request, "ranking_escolha.html")
+
+
+def _build_ranking(qs):
+    """
+    Monta a lista de ranking (posicao, nome, total, medalha) a partir de um QS de Crianca.
+    """
+    qs = qs.annotate(
+        total=Coalesce(
+            Sum(
+                ExpressionWrapper(
+                    F("resultado__quantidade") * F("resultado__atividade__pontos"),
+                    output_field=FloatField()
+                )
+            ),
+            Value(0.0)
+        )
+    ).order_by("-total", "nome")
+
+    # Top 3 totais distintos (> 0) para medalhas
+    tops = sorted({c.total for c in qs if c.total and c.total > 0}, reverse=True)[:3]
+
+    def medal_for(total):
+        if not tops:
+            return None
+        if len(tops) > 0 and total == tops[0]:
+            return "ouro"
+        if len(tops) > 1 and total == tops[1]:
+            return "prata"
+        if len(tops) > 2 and total == tops[2]:
+            return "bronze"
+        return None
+
+    ranking, last_total, posicao = [], None, 0
+    for i, c in enumerate(qs, start=1):
+        if c.total != last_total:
+            posicao = i
+            last_total = c.total
+        ranking.append({
+            "posicao": posicao,
+            "nome": c.nome,          # o template já usa |upper quando renderiza
+            "total": c.total,
+            "medalha": medal_for(c.total),
+        })
+    return ranking
+
+
+def ranking_por_faixa_ate4(request):
+    """
+    Ranking apenas das crianças com idade até 4 anos (inclusive).
+    """
+    qs = Crianca.objects.filter(idade__lte=4)
+    ranking = _build_ranking(qs)
+    return render(request, "ranking.html", {"ranking": ranking, "faixa": "Até 4 anos"})
+
+
+def ranking_por_faixa_5mais(request):
+    """
+    Ranking apenas das crianças com idade a partir de 5 anos (inclusive).
+    """
+    qs = Crianca.objects.filter(idade__gte=5)
+    ranking = _build_ranking(qs)
+    return render(request, "ranking.html", {"ranking": ranking, "faixa": "5 anos ou mais"})
